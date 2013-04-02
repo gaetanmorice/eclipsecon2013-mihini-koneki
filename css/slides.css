@@ -1,0 +1,67 @@
+
+
+.reveal strong {
+	color: #e7ad52;
+}
+
+.reveal small {
+	vertical-align: middle;
+}
+
+.state-background {
+	background-color: rgba(0,0,0,0.6) !important;
+}
+
+.bg body {
+	background-position:center;
+	background-size: cover !important;
+}
+
+.circuit body {	
+	background-image:url("../images/circuit.jpg");
+}
+
+.gears body {	
+	background-image:url("../images/gears.jpg");
+}
+
+.door body {	
+	background-image:url("../images/door.jpg");
+}
+
+.system body {	
+	background-image:url("../images/system.jpg");
+}
+
+.maori body {	
+	background-image:url("../images/maori.jpg");
+	/*background-position: 57px -80px;*/
+}
+
+.greenhouse body {	
+	background-image:url("../images/greenhouse.jpg");
+}
+
+.pipes body {	
+	background-image:url("../images/pipes.jpg");
+}
+
+.resistors body {	
+	background-image:url("../images/resistors.jpg");
+}
+
+.moon body {	
+	background-image:url("../images/moon.jpg");
+}
+
+.wifi body {	
+	background-image:url("../images/wifi.jpg");
+}
+
+.road body {	
+	background-image:url("../images/road.jpg");
+}
+
+.lantern body {	
+	background-image:url("../images/lantern.jpg");
+}
