@@ -1,0 +1,9 @@
+circuit.jpg: http://www.flickr.com/photos/73935252@N00/1564207767/
+gears.jpg: http://www.flickr.com/photos/28761527@N06/3499009813/
+door.jpg: http://www.flickr.com/photos/48391269@N00/2081376385/
+pipse.jpg: http://www.flickr.com/photos/51035555243@N01/112853198/
+resistors.jpg: http://www.flickr.com/photos/32547150@N00/2305842000/
+road.jpg: http://www.flickr.com/photos/14922165@N00/361161401/
+moon.jpg: http://www.flickr.com/photos/11599314@N00/2414457426/
+wifi.jpg: http://www.flickr.com/photos/29312235@N00/211289845
+lantern.jpg: http://www.flickr.com/photos/80854685@N08/7455424224/

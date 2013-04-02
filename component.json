@@ -1,0 +1,7 @@
+{
+  "name": "eclipsecon2013-mihini-koneki",
+  "version": "0.0.1",
+  "dependencies": {
+    "reveal.js": "d2cf21028eac378bdefe145fefa6d49841ecea1c"
+  }
+}

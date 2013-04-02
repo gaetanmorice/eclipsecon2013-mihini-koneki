@@ -1,0 +1,368 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Mihini & Koneki</title>
+
+	<meta name="description" content="Using Koneki and Mihini for developing M2M applications in Lua">
+	<meta name="author" content="Gaetan Morice - Sierra Wireless">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="components/reveal.js/css/reveal.min.css">
+	<link rel="stylesheet" href="components/reveal.js/css/theme/night.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="components/reveal.js/lib/css/zenburn.css">
+
+	<link rel="stylesheet" href="css/slides.css" type="text/css"></head>
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<!-- <link rel="stylesheet" href="components/reveal.js/css/print/pdf.css"> -->
+	<script>
+	document.write( '<link rel="stylesheet" href="components/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+	<div class="reveal">
+		<div class="slides">
+
+			<section>
+				<section data-state="bg circuit">
+					<h1><strong>M2M</strong> <small>with</small> <p> <strong>Mihini</strong> <small>&</small> <strong>Koneki</strong></h1>
+				</section>
+				<section>
+					<h2>Agenda</h2>
+					<p>&nbsp;</p>
+					<p>Setup a full M2M solution thanks to Mihini and Koneki</p>
+					<p class="fragment">on a <b>live</b> example.</p>
+				</section>
+				<section>
+					<h2>Introduction</h2>
+					<p>&nbsp;</p>
+					<ul>
+						<li>Gaetan Morice</li>
+						<li><b>Koneki</b> project co-lead</li>
+						<li>Works for <b>Sierra Wireless</b></li>
+						<li>Tooling team manager</li>
+					</ul>
+				</section>
+			</section>
+			
+			<section>
+				<section data-state="bg pipes">
+					<h1><small>Architecture of an </small></p><strong>M2M system</strong></h1>
+				</section>
+				<section>
+					<h1><small>Let's take an</small></p><strong>example</strong></h1>
+				</section>
+				<section>
+					<h1>Greenhouse!</h1>
+					<embed src="svg/greenhouse.svg" type="image/svg+xml" />
+				</section>
+				<section>
+					<h2>Sensors and actuators</h2>
+					<embed src="svg/sensors.svg" type="image/svg+xml" />
+				</section>
+				<section>
+					<h2>And controls</h2>
+					<embed src="svg/control.svg" type="image/svg+xml" />
+				</section>
+				<section>
+					<h1><small>Let's make it</small><p/><strong>M2M</strong></h1>
+				</section>
+				<section>
+					<h2>Remote management</h2>
+					<embed src="svg/supervision.svg" type="image/svg+xml"/>
+				</section>
+				<section>
+					<h2>User Stories</h2>
+					<p>&nbsp;</p>
+					<ol>
+						<li>User gets <strong>periodic update</strong> of the system's <strong>data</strong></li>
+						<li>User gets <strong>immediate feedback</strong> when something's getting wrong</li>
+						<li>User can <strong>act on the system</strong> to prevent / correct problems</li>
+					</ol>
+				</section>
+				<section>
+					<h1>Easy?</h1>
+				</section>
+				<section data-state="bg resistors">
+					<h1>Impedance mismatch!!!</h1>
+				</section>
+				<section>
+					<h2>Cross the Chasm</h2>
+					<embed src="svg/networks.svg" type="image/svg+xml"/>
+				</section>
+				<section>
+					<h3>3 different networks to bridge</h3>
+					<p>&nbsp;</p>
+					<ol>
+						<li><strong>Local</strong>: specific and heterogeneous </li>
+						<li><strong>Operators</strong>: bandwith constrained</li>
+						<li><strong>Internet</strong>: public and unsecure</li>
+					</ol>
+				</section>
+				<section>
+					<h2>M2M = bridging the gaps</h2>
+				</p>
+				<span>data</span><span>, protocols</span><span>, networks</span></span><span>, security</span><span>, ...</span>
+			</section>
+		</section>
+
+		<section>
+			<section data-state="bg door">
+				<h1><small>Introducing</small> </p><strong>Mihini</strong> <small>and</small> <strong>Koneki</strong></h1>
+			</section>
+			<section>
+				<i><h3>Mihini and Koneki are two <strong>Eclipse projects</strong> that target M2M development.</h3></i>
+			</section>
+			<section>
+				<h2>Back to our example</h2>
+				<p>&nbsp;</p>
+				<h3>We need to:</h3>
+				<ol>
+					<li>Acquire and process data</li>
+					<li>Send data smartly and efficiently</li>
+					<li>Receive commands</li>
+					<li>Act on the system accordingly</li>
+				</ol>
+			</section>
+			<section>
+				<ol>
+					<li>Acquire and process data</li>
+					<li><strong>Send data smartly and efficiently</strong></li>
+					<li><strong>Receive commands</strong></li>
+					<li>Act on the system accordingly</li>
+				</ol>
+				<p>&nbsp;</p>
+				<h3><strong>Generic</strong> to all M2M systems</h3>
+			</section>
+			<section>
+				<ol>
+
+					<li><strong>Acquire and process data</strong></li>
+					<li>Send data smartly and efficiently</li>
+					<li>Receive commands</li>
+					<li><strong>Act on the system accordingly</strong></li>
+				</ol>
+				<p>&nbsp;</p>
+				<h3><strong>Specific</strong> to each M2M system</h3>
+			</section>
+			<section>
+				<h2>Mihini</h2>
+				<p>&nbsp;</p>
+				Embedded <strong>M2M runtime</strong> that provides:
+				<ul>
+					<li>An <strong>autonomous agent</strong> for generic features</li>
+					<li>An <strong>application framework</strong> to customize the system</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Koneki</h2>
+				<p>&nbsp;</p>
+				<strong>Tooling</strong> to develop the specific application on top of the framework
+			</section>
+			<section>
+				<h2>M3DA</h2>
+				<p>&nbsp;</p>
+				M2M <strong>protocol</strong> and broker
+			</section>
+			<section>
+				<h2>Mihini<small>,</small> Koneki <small>and</small> M3DA</h2>
+				<embed src="svg/architecture.svg" type="image/svg+xml"/>
+			</section>
+		</section>
+
+		<section>
+			<section data-state="bg moon"><h1><strong>Koneki</strong> <small>and</small> <strong>Lua</strong></h1></section>
+			<section>
+				<h2>Why Lua ?</h2>
+				<p>&nbsp;</p>
+				<ul>
+					<li>Modern <b>scripting</b> language</li>
+					<li>Easily <b>portable</b></li>
+					<li>Royalty <b>free</b></li>
+					<li>C <b>interop</b></li>
+				</ul>
+			</section>
+			<section>
+				<h2>Koneki</h2>
+				<p>&nbsp;</p>
+				<ul>
+					<li>Lua <b>editor</b></li>
+					<li>Lua <b>debugger</b></li>
+					<li><b>Target</b> management</li>
+					<li>Local and Remote <b>execution</b></li>
+				</ul>
+			</section>
+			<section data-state="bg lantern">
+				<h1>Demo !</h1>
+			</section>
+		</section>
+
+		<section>
+			<section data-state="bg gears"><h1><strong>Mihini</strong></h1></section>
+			<section>
+				<h2>Mihini agent</h2>
+				<p>&nbsp;</p>
+				<h3>M2M <strong>services</strong></h3>
+				<ul>
+					<li>Data <b>queues</b></li>
+					<li>Network <b>bearers</b></li>
+					<li>Device <b>operation</b></li>
+					<li>Application <b>lifecyle</b> management</li>
+					<li>Application <b>configuration</b></li>
+				</ul>
+			</section>
+			<section>
+				<h2>Mihini framework</h2>
+				<p>&nbsp;</p>
+				<h3><strong>Building blocks</strong> to develop M2M apps</h3>
+
+				<ul>
+					<li><b>IO</b> management</li>
+					<li>Industrial <b>protocols</b></li>
+					<li><b>Networking</b></li>
+					<li><b>Tasks</b> scheduling</li>
+					<li><b>Local</b> storage</li>
+				</ul>
+			</section>
+			<section data-state="bg lantern">
+				<h1>Demo!</h1>
+			</section>
+		</section>
+
+		<section>
+			<section data-state="bg wifi"><h1><strong>M3DA</strong></h1></section>
+			<section>
+				<h2>M3DA protocol</h2>
+				<p>&nbsp;</p>
+				<ul>
+					<li><b>Compact</b> binary serialization: Bysant</li>
+					<li><b>Secure</b> (encryption, anti replay, ...)</li>
+					<li><b>Transport</b> independent: TCP, HTTP, SMS, ...</li>
+				</ul>
+			</section>
+			<section>
+				<h2>M3DA frontend</h2>
+				<p>&nbsp;</p>
+				<ul>
+					<li>M3DA / REST <b>translation</b></li>
+					<li><b>Hosted</b> at tcp://m2m.eclipse.org:44900</li>
+					<li><b>Standalone</b></li>
+					<li><b>Integrable</b> in larger server system</li>
+				</ul>
+			</section>
+			<section data-state="bg lantern">
+				<h1>Demo!</h1>
+			</section>
+
+		</section>
+
+		<section>
+			<section data-state="bg road">
+				<h1>Going further</h1>
+			</section>
+			<section>
+				<h2>Lua resources</h2>
+				<ul>
+					<li><a href="http://www.lua.org/">http://www.lua.org/</a></li>
+					<li><a href="http://www.lua.org/manual/5.1/">http://www.lua.org/manual/5.1/</a></li>
+					<li>Programming in Lua: THE reference book to learn Lua</li>
+					<ul>
+						<li><a href="http://www.amazon.com/Programming-Second-Edition-Roberto-Ierusalimschy/dp/8590379825/ref=pd_sim_b_10">Second Edition</a>: for Lua 5.1 (Mihini uses Lua 5.1)</li>
+						<li><a href="http://www.amazon.com/exec/obidos/ASIN/859037985X/lua-home-20">Third Edition</a>: for Lua 5.2</li>
+					</ul>
+				</ul>
+			</section>
+			<section>
+				<h2>Contact us</h2>
+				<ul>
+					<li><a href="http://www.eclipse.org/mihini/">http://www.eclipse.org/mihini</a></li>
+					<li><a href="mailto:mihini-dev@eclipse.org">mihini-dev@eclipse.org</a></li>
+					<br>
+					<li><a href="http://www.eclipse.org/koneki/">http://www.eclipse.org/koneki</a></li>
+					<li><a href="http://www.eclipse.org/forums/eclipse.koneki">Koneki forum</a></li>
+				</ul>
+			</section>
+			<section>
+				<h1>Thank you!</h1>
+			</section>
+			<section>
+				<h2>Credits</h2>
+				<p>&nbsp;</p>
+				<div style="float: left; text-align: left">
+					<div><img src="images/circuit.jpg" style="width: 120; high: 120; vertical-align: middle"/> <a style="vertical-align: middle" href="http://www.flickr.com/photos/73935252@N00/1564207767">Mando Gomez</a></div>
+					<div><img src="images/pipes.jpg" style="width: 120; high: 120; vertical-align: middle"/> <a style="vertical-align: middle" href="http://www.flickr.com/photos/51035555243@N01/112853198">Thomas Hawk</a></div>
+					<div><img src="images/door.jpg" style="width: 120; high: 120; vertical-align: middle"/> <a style="vertical-align: middle" href="http://www.flickr.com/photos/48391269@N00/2081376385">Javier Volcan</a></div>
+					<div><img src="images/moon.jpg" style="width: 120; high: 120; vertical-align: middle"/> <a style="vertical-align: middle" href="http://www.flickr.com/photos/11599314@N00/2414457426">Luz Adriana Villa</a></div>
+					<div><img src="images/resistors.jpg" style="width: 120; high: 120; vertical-align: middle"/> <a style="vertical-align: middle" href="http://www.flickr.com/photos/32547150@N00/2305842000">steve lodefink</a></div>
+				</div>
+				<div style="float: right; text-align: left">
+					<div><img src="images/gears.jpg" style="width: 120; high: 120 ; vertical-align: middle"/> <a style="vertical-align: middle" href="http://www.flickr.com/photos/28761527@N06/3499009813">Eduardo Tavares</a></div>
+					<div><img src="images/wifi.jpg" style="width: 120; high: 120 ; vertical-align: middle"/> <a style="vertical-align: middle" href="http://www.flickr.com/photos/29312235@N00/211289845">Palagret</a></div>
+					<div><img src="images/road.jpg" style="width: 120; high: 120 ; vertical-align: middle"/> <a style="vertical-align: middle" href="http://www.flickr.com/photos/14922165@N00/361161401">Nicholas A. Tonelli</a></div>
+					<div><img src="images/lantern.jpg" style="width: 120; high: 120 ; vertical-align: middle"/> <a style="vertical-align: middle" href="http://www.flickr.com/photos/80854685@N08/7455424224">Mark Fischer</a></div>
+				</div>	
+			</section>
+			<section>
+				<h2>Credits</h2>
+				<p>&nbsp;</p>
+				<div style="float: left; text-align: left">
+					<div><img src="svg/noun_project_115.svg" type="image/svg+xml" style="background: #eeeeee; vertical-align: middle; width: 60"/> <a style="vertical-align: middle" href="http://thenounproject.com/noun/computer/#icon-No115">The Noun Project</a></div>
+					<div><img src="svg/noun_project_122.svg" type="image/svg+xml" style="background: #eeeeee; vertical-align: middle; width: 60"/> <a style="vertical-align: middle" href="http://thenounproject.com/noun/light-bulb/#icon-No122">The Noun Project</a></div>
+					<div><img src="svg/noun_project_868.svg" type="image/svg+xml" style="background: #eeeeee; vertical-align: middle; width: 60"/> <a style="vertical-align: middle" href="http://thenounproject.com/noun/sun/#icon-No868">Boris Ruether</a></div>
+					<div><img src="svg/noun_project_3210.svg" type="image/svg+xml" style="background: #eeeeee; vertical-align: middle; width: 60"/> <a style="vertical-align: middle" href="http://thenounproject.com/noun/servers/#icon-No3210">Ken Hawkins</a></div>
+					<div><img src="svg/noun_project_3765.svg" type="image/svg+xml" style="background: #eeeeee; vertical-align: middle; width: 60"/> <a style="vertical-align: middle" href="http://thenounproject.com/noun/cloud/#icon-No3765">James Fenton</a></div>
+				</div>
+				<div style="float: right; text-align: left">
+					<div><img src="svg/noun_project_4350.svg" type="image/svg+xml" style="background: #eeeeee; vertical-align: middle; width: 60"/> <a style="vertical-align: middle" href="http://thenounproject.com/noun/arrow/#icon-No4350">Matt Scribner</a></div>
+					<div><img src="svg/noun_project_5467.svg" type="image/svg+xml" style="background: #eeeeee; vertical-align: middle; width: 60"/> <a style="vertical-align: middle" href="http://thenounproject.com/noun/antenna/#icon-No5467">Benjamin Brandt</a></div>
+					<div><img src="svg/noun_project_9594.svg" type="image/svg+xml" style="background: #eeeeee; vertical-align: middle; width: 60"/> <a style="vertical-align: middle" href="http://thenounproject.com/noun/lightning-bolt/#icon-No9594">Muneer A.Safiah</a></div>
+					<div><img src="svg/noun_project_9694.svg" type="image/svg+xml" style="background: #eeeeee; vertical-align: middle; width: 60"/> <a style="vertical-align: middle" href="http://thenounproject.com/noun/cpu/#icon-No9694">Michael Anthony</a></div>
+				</div>	
+			</section>
+		</section>
+
+	</div>
+</div>
+
+<script src="components/reveal.js/lib/js/head.min.js"></script>
+<script src="components/reveal.js/js/reveal.min.js"></script>
+
+<script>
+console.log(Reveal.getQueryHash().theme)
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+				{ src: 'components/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'components/reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				// { src: 'lib/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'components/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'components/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'components/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+					]
+				});
+
+</script>
+</body>
+</html>
